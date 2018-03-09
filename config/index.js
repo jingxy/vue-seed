@@ -38,18 +38,66 @@ module.exports = {
            target: "https://new.dataos.io:8443", // 目标url地址
            secure: false,
            changeOrigin: true,
-       }
-        // "/signin": {
-        //     target: "https://lab.new.dataos.io", // 目标url地址
-        //     secure: false,
-        //     changeOrigin: true,
-        // },
-        // "/apis": {
-        //     target: "https://new.dataos.io:8443", // 目标url地址
-        //     secure: false,
-        //     changeOrigin: true,
-        // }
+       },
+       "/apis/prd.asiainfo.com": {
+           target: "https://lab.new.dataos.io", // 目标url地址
+           secure: false,
+           changeOrigin: true,
+       },
+       "/lapi/": {
+           target: "https://lab.new.dataos.io", // 目标url地址
+           secure: false,
+           changeOrigin: true,
+       },
+       "/v2/": {
+           target: "http://192.168.1.139:5000", // 目标url地址
+           secure: false,
+           changeOrigin: true,
+       },
+       "/lapi/v1/namespaces": {
+           target: "https://volume.datafoundry.new.dataos.io", // 目标url地址
+           secure: false,
+           changeOrigin: true,
+       },
+       "/v1/repos/": {
+           target: "https://lab.new.dataos.io", // 目标url地址
+           secure: false,
+           changeOrigin: true,
+       },
+       "/integration/v1/services": {
+           target: "https://datafoundry.payment.app.dataos.io", // 目标url地址
+           secure: false,
+           changeOrigin: true,
+       },
+       "/integration/v1/": {
+           target: "https://datafoundry.payment.app.dataos.io", // 目标url地址
+           secure: false,
+           changeOrigin: true,
+       },
+      
+       "/hawkular/": {
+           target: "https://hawkular-metrics.new.dataos.io", // 目标url地址
+           secure: false,
+           changeOrigin: true,
+       },
+      
+       "/registry/": {
+           target: "https://datafoundry.payment.app.dataos.io", // 目标url地址
+           secure: false,
+           changeOrigin: true,
+       },
+      "/ws/": {
+           target: "https://new.dataos.io:8443", // 目标url地址
+           secure: false,
+           changeOrigin: true,
+           pathRewrite: {'^/ws/' : '/'},
+           ws:true
+       },
+      
     },
+    
+    
+      
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)
