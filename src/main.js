@@ -11,17 +11,19 @@ import moment from "moment";
 import VueMoment from "vue-moment";
 import axios from 'axios'
 import ElementUex from 'element-uex'
-
+import filter from './components/js/filters'
 import 'element-uex/lib/theme-default/index.css'
   Vue.config.productionTip = false
   Vue.use(ElementUI);
-  Vue.use(ElementUex)
+  // Vue.use(filter);
+  Vue.use(ElementUex);
   Vue.use(VueMoment, moment);
   Vue.prototype.$http = axios;
   /* eslint-disable no-new */
   new Vue({
     el: '#app',
     router,
+    filter,
     store:store,
       components: { App },
       template: '<App/>'

@@ -1,4 +1,4 @@
-<template>
+<template id="app">
 
     <el-container class="con_main">
       <el-header style="padding:0px;">

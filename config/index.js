@@ -39,6 +39,11 @@ module.exports = {
            secure: false,
            changeOrigin: true,
        },
+      "/oapi/v1": {
+        target: "https://new.dataos.io:8443", // 目标url地址
+        secure: false,
+        changeOrigin: true,
+      },
        "/apis/prd.asiainfo.com": {
            target: "https://lab.new.dataos.io", // 目标url地址
            secure: false,
@@ -74,13 +79,13 @@ module.exports = {
            secure: false,
            changeOrigin: true,
        },
-      
+
        "/hawkular/": {
            target: "https://hawkular-metrics.new.dataos.io", // 目标url地址
            secure: false,
            changeOrigin: true,
        },
-      
+
        "/registry/": {
            target: "https://datafoundry.payment.app.dataos.io", // 目标url地址
            secure: false,
@@ -93,11 +98,11 @@ module.exports = {
            pathRewrite: {'^/ws/' : '/'},
            ws:true
        },
-      
+
     },
-    
-    
-      
+
+
+
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)

@@ -7,9 +7,9 @@ import Final from '../../static/baseSetting/Final'
 
 // axios 配置
 axios.defaults.timeout = 5000;
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 axios.defaults.headers.post['X-REQUESTED-WITH']='XMLHttpRequest';
-// axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
+axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 axios.defaults.baseURL = Final.PROXY ; // '/action';
 
 //POST传参序列化
@@ -18,7 +18,7 @@ axios.interceptors.request.use((config) => {
     if(config.headers["Content-Type"] == "application/json"){
       config.data =config.data;
     }else{
-      config.data = qs.stringify(config.data);
+      config.data = JSON.stringify(config.data);
     }
   }
   return config;
@@ -40,26 +40,55 @@ axios.interceptors.response.use((res) =>{
 });
 
 
-export function fetch(url, params,methodType,contentType,userI) {
+export function fetch(url, params,methodType,contentType) {
   return new Promise((resolve, reject) => {
-    let token = localStorage.getItem("token");
-    let config = {token:token};
-    if(contentType == "json"){
-        config['Content-Type']="application/json";
-    }
+    var tokens =localStorage.getItem('df_access_token');
+    var lginToken = localStorage.getItem('token');
+    var regions = localStorage.getItem('region');
+    var token = '';
     var axiosConfig={
       method: methodType || "post",
-      headers:config,
+      headers:{},
       url:url
     }
+    if (tokens && regions) {
+      var tokenarr = tokens.split(',');
+      var region = regions.split('-')[2];
+      if (/^\/lapi\/v1\/orgs/.test(url) || /^\/oapi/.test(url) || /^\/api/.test(url) || /^\/payment/.test(url) || /^\/v1\/repos/.test(url)) {
+
+        token = tokenarr[region - 1];
+      } else {
+        token = tokenarr[0];
+      }
+
+    }
+
+    if (/^\/hawkular/.test(url)) {
+      axiosConfig.headers["Content-Type"] = "application/json";
+      // axiosConfig.headers["Hawkular-Tenant"] = $rootScope.namespace;
+    }
+    if (/^\/registry/.test(url)) {
+      var Auth = localStorage.getItem("Auth")
+      axiosConfig.headers["Authorization"] = "Basic " + Auth;
+    }
+    if (axiosConfig.method == 'PATCH') {
+      axiosConfig.headers["Content-Type"] = "application/merge-patch+json";
+    }
+
+    // if(contentType == "json"){
+    //   axiosConfig.headers['Content-Type']="application/json";
+    // }
+
     if(methodType == "get"){
       if(url == '/signin'){
-          axiosConfig.headers=params.headers
+          axiosConfig.headers['Authorization']="Basic " + lginToken;
       }else{
+          axiosConfig.headers["Authorization"] = "Bearer " + token;
           axiosConfig.params=params
       }
 
     }else {
+      axiosConfig.headers["Authorization"] = "Bearer " + token;
       axiosConfig.data=params
     }
     axios(axiosConfig).then(response => {

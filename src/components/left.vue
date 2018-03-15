@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <aside style="width: 180px;">
     <elx-menu
             v-on:sidebar-open="sidebarOpen"
             v-on:last-child-node-click="lastChildNodeClick"
@@ -13,7 +13,7 @@
             :menu-type="menuType"
     >
     </elx-menu>
-  </div>
+  </aside>
 </template>
 <style>
   div#sidebar .menu-content {
@@ -22,7 +22,8 @@
 </style>
 
 <script>
-  import TestData from '../util/TestData'
+  import TestData from '../util/TestData';
+  import api from "./../fetch/api"
     export default {
         data: function() {
             return {
@@ -39,6 +40,7 @@
             sidebarOpen: function() {},
             lastChildNodeClick: function(data) {
                 this.$router.push(data.url)
+
             },
             menuChange: function() {}
         },

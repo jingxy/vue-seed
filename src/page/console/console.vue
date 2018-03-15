@@ -1,15 +1,17 @@
 <template>
-      <section class="con_main_r">
+      <section>
         <v-con-nav></v-con-nav>
-        <div>
+        <div style="display:flex">
             <!--<el-aside class="left_bgColor"  width="auto">-->
                 <v-left></v-left>
             <!--</el-aside>-->
-            <div style="padding:0px;">
+            <div style="padding:0px;"  class="con_main_r">
+              <section class="con_tab">
                 <keep-alive>
                     <router-view v-if="$route.meta.keepAlive"></router-view>
                 </keep-alive>
                 <router-view v-if="!$route.meta.keepAlive"></router-view>
+              </section>
             </div>
         </div>
       </section>
@@ -33,7 +35,8 @@
     },
     //el 创建完成
     created () {
-
+        this.$store.state.namespace = localStorage.getItem("namespace");
+        console.log('this.$store.state.namespace',this.$store.state)
     },
     //el 挂载完成
     mounted () {

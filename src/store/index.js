@@ -8,7 +8,9 @@ Vue.use(Vuex)
 
 var state = {
    	tmpFromPath:'',
-	user:''
+	  user:'',
+    namespace:'',
+    projects:[]
 }
 
 export default new Vuex.Store({

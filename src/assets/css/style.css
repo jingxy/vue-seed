@@ -86,7 +86,7 @@ aside{
 /*}*/
 .con_main_r{
   flex:1;/*这里设置为占比1，填充满剩余空间*/
-  margin-left: 200px\0;/* ie9 */ ;
+  margin-left: 20px;/* ie9 */ ;
 
 }
 nav{

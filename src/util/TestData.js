@@ -4,7 +4,7 @@
 const OBJ ={
   left_menu_data : [
       {
-          url: "/home/dashboard",
+          url: "",
           children: [
               {
                   url: "/console/dashboard",
@@ -47,31 +47,43 @@ const OBJ ={
           images: "uex-icon-command-config"
       },
       {
-          url: "",
+          url: "/console/dashboard",
           children: [
-              {
-                  url: "ftl/distribute/distributeList3",
-                  children: [],
-                  sidebarType: null,
-                  descr: null,
-                  extendConf: null,
-                  open: false,
-                  active: false,
-                  modelcode: "distribute-list-3",
-                  modelname: "数据分发3",
-                  modeltype: "0",
-                  parentcode: "task-mgr",
-                  images: "uex-icon-platform-resource-allocation"
-              }
           ],
-          menuName: "需求管理",
+          menuName: "仪表盘",
           open: false,
           active: false,
-          modelcode: "task-mgr",
-          modelname: "需求管理",
+          modelcode: "dashboard",
+          modelname: "仪表盘",
           modeltype: "0",
           parentcode: null,
           images: ""
+      },
+      {
+        url: "/console/build",
+        children: [
+        ],
+        menuName: "代码构建",
+        open: false,
+        active: false,
+        modelcode: "build",
+        modelname: "代码构建",
+        modeltype: "0",
+        parentcode: null,
+        images: ""
+      },
+      {
+        url: "/console/dashboard",
+        children: [
+        ],
+        menuName: "镜像仓库",
+        open: false,
+        active: false,
+        modelcode: "image",
+        modelname: "镜像仓库",
+        modeltype: "0",
+        parentcode: null,
+        images: ""
       }
   ]
 }
