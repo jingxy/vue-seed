@@ -12,9 +12,8 @@ axios.defaults.headers.post['X-REQUESTED-WITH']='XMLHttpRequest';
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 axios.defaults.baseURL = Final.PROXY ; // '/action';
 
-//POST传参序列化
 axios.interceptors.request.use((config) => {
-  if(config.method  === 'post'){
+  if(config.method != 'get'){
     if(config.headers["Content-Type"] == "application/json"){
       config.data =config.data;
     }else{
