@@ -1,6 +1,6 @@
 import * as fetch from "./fetch"
-
-
+import global_ from './Global'
+console.log('global_',global_)
 
 const base = {
     getNamespace(){
@@ -16,29 +16,29 @@ const base = {
      * 获取用户信息
      */
     base_user(params,name) {
-      return fetch.fetch('/oapi/v1/users/'+name, params,'get');
+      return fetch.fetch(global_.route.host+'/users/'+name, params,'get');
     },
     /**
      * 获取Project
      */
     base_project(params,name) {
-      return fetch.fetch('/oapi/v1/projects/'+name, params,'get');
+      return fetch.fetch(global_.route.host+'/projects/'+name, params,'get');
     },
     /**
      * 获取buildconfig列表
      */
     base_buildConfig(params) {
-      return fetch.fetch('/oapi/v1/namespaces/'+localStorage.getItem("namespace")+'/buildconfigs/', params,'get');
+      return fetch.fetch(global_.route.host+'/namespaces/'+localStorage.getItem("namespace")+'/buildconfigs/', params,'get');
     },
     base_buildInstantiate(params,urlobj) {
 
-      return fetch.fetch('/oapi/v1/namespaces/'+localStorage.getItem("namespace")+'/buildconfigs/'+urlobj.name+'/instantiate', params,'post');
+      return fetch.fetch(global_.route.host+'/namespaces/'+localStorage.getItem("namespace")+'/buildconfigs/'+urlobj.name+'/instantiate', params,'post');
     },
     /**
      * 获取build列表
      */
     base_build(params) {
-      return fetch.fetch('/oapi/v1/namespaces/'+localStorage.getItem("namespace")+'/builds/', params,'get');
+      return fetch.fetch(global_.route.host+'/namespaces/'+localStorage.getItem("namespace")+'/builds/', params,'get');
     }
 }
 

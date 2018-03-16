@@ -23,6 +23,7 @@ import VHeader from "./../../components/header";
 import VLeft from "./../../components/left";
 import VConNav from "./../../components/con_nav";
 import Final from "../../../static/baseSetting/Final";
+import api from "../../fetch/api";
 export default {
   data() {
     return {};
@@ -33,14 +34,25 @@ export default {
   //el 创建完成
   created() {
     this.websocket();
+    this.loadBuildConfigs();
     this.$store.state.namespace = localStorage.getItem("namespace");
     console.log("this.$store.state.namespace", this.$store.state);
   },
   //el 挂载完成
   mounted() {},
   methods: {
+    loadBuildConfigs: function() {
+      api
+        .base_buildConfig({})
+        .then(res => {
+          console.log("res", res);
+        })
+        .catch(error => {});
+    },
     websocket() {
-      let ws = new WebSocket("ws://localhost:8080/ws/oapi/v1/namespaces/jiangtong/builds?watch=true&resourceVersion=12983237&region=cn-north-1&access_token=A__t6LZ4K8hJ_MwZfBLKCrJx5bwaS0ajt1oIe4G1H9g");
+      let ws = new WebSocket(
+        "ws://localhost:8080/ws/oapi/v1/namespaces/jiangtong/builds?watch=true&resourceVersion=12983237&access_token=A__t6LZ4K8hJ_MwZfBLKCrJx5bwaS0ajt1oIe4G1H9g"
+      );
       ws.onopen = () => {
         // Web Socket 已连接上，使用 send() 方法发送数据
         ws.send("Holle");
