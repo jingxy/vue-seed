@@ -1,3 +1,4 @@
+
 import Vue from 'vue';
 import moment from "moment";
 moment.locale('zh-cn');
@@ -68,3 +69,4 @@ Vue.filter("timescon", function(times) {
     return moment(times).format('YYYY-MM-DD HH:mm:ss');
   }
 });
+

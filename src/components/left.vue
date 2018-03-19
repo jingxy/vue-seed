@@ -27,7 +27,7 @@
     export default {
         data: function() {
             return {
-                menuActive: "distribute-list",
+                menuActive: this.$store.state.routeUrl,
                 menuOpen: "",
                 menuType: "outer",
                 data2: [],
@@ -39,7 +39,9 @@
             handleNodeClick(data) {},
             sidebarOpen: function() {},
             lastChildNodeClick: function(data) {
-                this.$router.push(data.url)
+              console.log('this.$store.state.routeUrl', this.$store.state);
+              this.$store.state.routeUrl = data.url;
+              this.$router.push(data.url)
 
             },
             menuChange: function() {}

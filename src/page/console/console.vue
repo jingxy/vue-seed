@@ -49,6 +49,7 @@ export default {
         })
         .catch(error => {});
     },
+<<<<<<< HEAD
     websocket() {
       let ws = new WebSocket(
         "ws://localhost:8080/ws/oapi/v1/namespaces/jiangtong/builds?watch=true&resourceVersion=12983237&access_token=A__t6LZ4K8hJ_MwZfBLKCrJx5bwaS0ajt1oIe4G1H9g"
@@ -78,6 +79,34 @@ export default {
     VHeader,
     VLeft,
     VConNav
+=======
+    watch:{
+      "$route": function(to,from) {
+            console.log('111',to)
+            console.log('111------',from);
+        this.$store.state.routeUrl = to.path;
+      }
+    },
+    //el 创建完成
+    created () {
+        this.$store.state.namespace = localStorage.getItem("namespace");
+
+        console.log('this.$store.state.namespace',this.$store.state)
+    },
+    //el 挂载完成
+    mounted () {
+
+    },
+    methods :{
+
+    },
+    components :{
+      VHeader,
+      VLeft,
+      VConNav
+    },
+    methods : {}
+>>>>>>> 379d5a3f5c58e828aaee5a75075054f0915de198
   }
 };
 </script>

@@ -10,7 +10,8 @@ var state = {
    	tmpFromPath:'',
 	  user:'',
     namespace:'',
-    projects:[]
+    projects:[],
+    routeUrl:''
 }
 
 export default new Vuex.Store({
