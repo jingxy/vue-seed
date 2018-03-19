@@ -30,12 +30,15 @@
     },
     watch:{
       "$route": function(to,from) {
-
+            console.log('111',to)
+            console.log('111------',from);
+        this.$store.state.routeUrl = to.path;
       }
     },
     //el 创建完成
     created () {
         this.$store.state.namespace = localStorage.getItem("namespace");
+
         console.log('this.$store.state.namespace',this.$store.state)
     },
     //el 挂载完成
