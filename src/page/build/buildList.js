@@ -1,10 +1,12 @@
 import * as util from "../../util/util"
 import api from "../../fetch/api"
+import * as webs from "../../components/js/WS";
 
 export default {
   data() {
     return {
       buildConfigData : [],
+      resourceVersion:'',
       currentPage: 1,
       totalRow: 20,
       pageobj:{
@@ -71,6 +73,8 @@ export default {
       }
       api.base_build({labelSelector:labelSelector})
         .then(res => {
+          this.resourceVersion = res.metadata.resourceVersion;
+          this.websocket()
           this.fillBuildConfigs(res.items)
         }).catch(error => {
 
@@ -102,6 +106,21 @@ export default {
       }
       this.copedata = Object.assign({}, this.buildConfigData);
     },
+    websocket() {
+      webs.WS({
+        resourceVersion: this.resourceVersion,
+        namespace: localStorage.getItem('namespace'),
+        type: 'builds',
+        name: ''
+      }, function(res){
+        var data = JSON.parse(res.data);
+        console.log('lalallalaa',data)
+      }, function(){
+        console.log("webSocket start");
+      }, function(){
+        console.log("webSocket stop");
+      });
+      },
     startBuild:function(idx){
       var name = this.curdata[idx].metadata.name;
       console.log('name', name);
