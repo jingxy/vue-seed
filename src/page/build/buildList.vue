@@ -8,7 +8,7 @@
           width="180">
           <template slot-scope="scope">
             <el-tooltip class="item" effect="dark" :content="scope.row.metadata.name" placement="top">
-            <span>{{scope.row.metadata.name}}</span>
+              <router-link :to="{name:'build_detail',params: {name:scope.row.metadata.name }}"><span>{{scope.row.metadata.name}}</span></router-link>
             </el-tooltip>
           </template>
         </el-table-column>

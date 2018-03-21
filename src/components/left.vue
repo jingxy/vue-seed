@@ -27,7 +27,7 @@
     export default {
         data: function() {
             return {
-                menuActive: this.$store.state.routeUrl,
+                menuActive: this.$route.name || this.$store.state.routeUrl,
                 menuOpen: "",
                 menuType: "outer",
                 data2: [],

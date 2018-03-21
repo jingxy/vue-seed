@@ -4,6 +4,7 @@ const console = r => require.ensure([], () => r(require('../page/console/console
 const dashboard = r => require.ensure([], () => r(require('../components/dashboard')), 'dashboard');
 const dashboard1 = r => require.ensure([], () => r(require('../components/dashboard1')), 'dashboard1');
 const build = r => require.ensure([], () => r(require('../page/build/buildList.vue')), 'build');
+const build_detail = r => require.ensure([], () => r(require('../page/build-detail/build-detail.vue')), 'build_detail');
 
 const routerConfig = [{
   path: '/console',
@@ -25,6 +26,11 @@ const routerConfig = [{
       path:'build',//build列表
       name:"build",
       component:build,
+    },
+    {
+      path:'build_detail/:name',//build列表
+      name:"build_detail",
+      component:build_detail,
     },
 
   ]

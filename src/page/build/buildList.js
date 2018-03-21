@@ -1,8 +1,8 @@
 import * as util from "../../util/util"
 import api from "../../fetch/api"
 import * as webs from "../../components/js/WS";
-
 export default {
+
   data() {
     return {
       buildConfigData : [],
@@ -15,7 +15,7 @@ export default {
         currentPage:1
       },
       copedata:[],
-      curdata:[]
+      curdata:[],
     }
   },
   watch:{
@@ -31,6 +31,7 @@ export default {
   components :{
   },
   methods : {
+
     /**
      * 翻页
      */
@@ -106,21 +107,46 @@ export default {
       }
       this.copedata = Object.assign({}, this.buildConfigData);
     },
-    websocket() {
+    websocket:function() {
+
+      console.log('_this', this);
+     var _this=this
       webs.WS({
-        resourceVersion: this.resourceVersion,
+        resourceVersion: _this.resourceVersion,
         namespace: localStorage.getItem('namespace'),
         type: 'builds',
         name: ''
       }, function(res){
         var data = JSON.parse(res.data);
-        console.log('lalallalaa',data)
+        _this.updateBuildConfigs(data);
       }, function(){
         console.log("webSocket start");
       }, function(){
         console.log("webSocket stop");
       });
-      },
+
+
+    },
+    updateBuildConfigs:function (data){
+        if (data.type == 'ERROR') {
+          console.log("err", data.object.message);
+          webs.webS.clear();
+          return;
+        }
+        this.resourceVersion = data.object.metadata.resourceVersion;
+        if (data.type == 'ADDED') {
+
+        } else if (data.type == "MODIFIED") {
+          for(var i = 0 ; i < this.curdata.length ; i++){
+            if(this.curdata[i].build){
+              return
+            }
+            if(this.curdata[i].build.metadata.name == data.object.metadata.name){
+              this.curdata[i].build = data.object;
+            }
+          }
+        }
+    },
     startBuild:function(idx){
       var name = this.curdata[idx].metadata.name;
       console.log('name', name);
