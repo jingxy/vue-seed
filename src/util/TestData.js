@@ -71,6 +71,19 @@ const OBJ ={
         modeltype: "0",
         parentcode: null,
         images: ""
+      },
+      {
+        url: "/console/image",
+        children: [
+        ],
+        menuName: "镜像仓库",
+        open: false,
+        active: false,
+        modelcode: "image",
+        modelname: "镜像仓库",
+        modeltype: "0",
+        parentcode: null,
+        images: ""
       }
 
   ]

@@ -5,6 +5,8 @@ const dashboard = r => require.ensure([], () => r(require('../components/dashboa
 const dashboard1 = r => require.ensure([], () => r(require('../components/dashboard1')), 'dashboard1');
 const build = r => require.ensure([], () => r(require('../page/build/buildList.vue')), 'build');
 
+const image = r => require.ensure([], () => r(require('../page/image/imageList.vue')), 'image');
+
 const routerConfig = [{
   path: '/console',
   component:console,
@@ -25,6 +27,11 @@ const routerConfig = [{
       path:'build',//build列表
       name:"build",
       component:build,
+    },
+    {
+      path:'image',//image列表
+      name:"image",
+      component:image,
     },
 
   ]

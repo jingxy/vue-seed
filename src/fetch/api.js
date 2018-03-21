@@ -27,6 +27,7 @@ const base = {
     /**
      * 获取buildconfig列表
      */
+    // http://localhost:8090/oapi/v1/namespaces/jiangtong/buildconfigs/
     base_buildConfig(params) {
       return fetch.fetch(global_.route.host+'/namespaces/'+localStorage.getItem("namespace")+'/buildconfigs/', params,'get');
     },
@@ -39,7 +40,13 @@ const base = {
      */
     base_build(params) {
       return fetch.fetch(global_.route.host+'/namespaces/'+localStorage.getItem("namespace")+'/builds/', params,'get');
-    }
+    },
+     /**
+     * 获取image列表 (镜像仓库——构像镜像) 
+     */
+    base_ImageStreamTag(params) {
+      return fetch.fetch(global_.route.host+'/namespaces/'+localStorage.getItem("namespace")+'/imagestreamtags/', params,'get');
+    },
 }
 
 export  default  Object.assign(base);
